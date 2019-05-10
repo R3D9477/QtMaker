@@ -12,7 +12,7 @@ Script provides:
 
 #### Install and Run
 
-1. install all needed dependencies (bash, wget, git)
+1. install all needed dependencies (bash, wget, git, opengl, gstreamer)
 2. set your toolchain
 3. be sure that you have a free space on your local storage
 4. run `git clone --recursive https://github.com/r3d9u11/QtMaker.git`
