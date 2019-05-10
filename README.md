@@ -12,8 +12,8 @@ Script provides:
 
 #### Install and Run
 
-1. install all needed dependencies (bash, wget, git)
-2. set your toolchain
+1. install all needed dependencies (bash, wget, git, opengl, gstreamer)
+2. set your toolchain _(example you can see in [LIMaker](https://github.com/r3d9u11/LIMaker/blob/master/03-set_tc.sh#L1))_
 3. be sure that you have a free space on your local storage
 4. run `git clone --recursive https://github.com/r3d9u11/QtMaker.git`
 5. check configuration in `make-all-defs.sh`
@@ -25,7 +25,6 @@ Script provides:
 `CACHE` - directory which contains Qt sources and other packages
 `SYSROOT` - target root filesystem
 `PASS` - password to grant root privileges on host machine
-`SU` - prefix for command to run with root privileges
 
 `Qt_VER` - numeric version of Qt
 `Qt_DIR` - Qt directory on target root filesystem
