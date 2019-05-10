@@ -13,7 +13,7 @@ Script provides:
 #### Install and Run
 
 1. install all needed dependencies (bash, wget, git, opengl, gstreamer)
-2. set your toolchain _(example you can see in [ELMaker](https://github.com/r3d9u11/LIMaker/blob/master/03-set_tc.sh#L1))_
+2. set your toolchain _(example you can see in [LIMaker](https://github.com/r3d9u11/LIMaker/blob/master/03-set_tc.sh#L1))_
 3. be sure that you have a free space on your local storage
 4. run `git clone --recursive https://github.com/r3d9u11/QtMaker.git`
 5. check configuration in `make-all-defs.sh`
