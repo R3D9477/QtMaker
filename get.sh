@@ -43,9 +43,9 @@ function getq() {
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 getq "qtbase"
+getq "qtmultimedia"
 getq "qtdeclarative"
 getq "qtquickcontrols2"
-getq "qtmultimedia"
 getq "qtserialport"
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---

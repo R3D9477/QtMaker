@@ -1,14 +1,12 @@
 #!/bin/bash
 
 if [ ! -z "$CACHE" ] && [ ! -z "$SYSROOT" ] ; then
-
+    
     export Qt_VER="5.9"
-    export Qt_BASE=$(realpath "$CACHE/qtbase")
     export Qt_DIR="/opt/Qt$Qt_VER"
     export Qt_ACCEPT_CONFIG="a"
     export Qt_TEST=$(realpath "test")
     export Qt_EXPORT="$CACHE/qtest_$(date '+%Y%m%d%H%M%S')"
-    export Qt_DEVICE="/dev/mmcblk0p2"
     
 fi
 

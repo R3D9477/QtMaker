@@ -40,14 +40,6 @@ if [ -z "$Qt_VER" ]; then
     export Qt_VER
 fi
 
-if [ -z "$Qt_BASE" ]; then
-    read -p "Qt BASE: " Qt_BASE
-    if [ -z "$Qt_BASE" ] ; then
-        Qt_BASE=$(realpath "$CACHE/qtbase")
-    fi
-    export Qt_BASE
-fi
-
 if [ -z "$Qt_DIR" ]; then
     read -p "Qt DIR: " Qt_DIR
     if [ -z "$Qt_DIR" ] ; then
@@ -86,12 +78,4 @@ fi
 
 if [ ! -d "$Qt_EXPORT" ] ; then
     mkdir -p "$Qt_EXPORT"
-fi
-
-if [ -z "$Qt_DEVICE" ]; then
-    read -p "Qt DEVICE: " Qt_DEVICE
-    if [ -z "$Qt_DEVICE" ] ; then
-        Qt_DEVICE="/dev/mmcblk0p2"
-    fi
-    export Qt_DEVICE
 fi
