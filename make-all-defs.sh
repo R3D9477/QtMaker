@@ -33,12 +33,12 @@ function qbuild() {
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-if ! ./get.sh; then
+if ! bash get.sh; then
     echo "Qt FAILED: get"
     exit 1
 fi
 
-if ! ./make.sh; then
+if ! bash make.sh; then
     echo "Qt FAILED: make"
     exit 1
 fi
@@ -58,12 +58,12 @@ if ! qbuild "$Qt_TEST/qt_qc"; then
     exit 1
 fi
 
-if ! ./export.sh; then
+if ! bash export.sh; then
     echo "Qt FAILED: export"
     exit 1
 fi
 
-if ! ./deploy2sysroot.sh; then
+if ! bash deploy2sysroot.sh; then
     echo "Qt FAILED: deploy2sysroot"
     exit 1
 fi
