@@ -5,7 +5,9 @@ source ./setEnv.sh
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 function getq() {
+    
     cd "$CACHE"
+    
     if [ -d "$1" ]; then
         cd "$1"
         git submodule foreach --recursive "git clean -dfx"
@@ -33,21 +35,28 @@ function getq() {
             fi
         fi
     fi
+    
     cd "$CACHE"
+    
     echo ""
-    echo "DOWNLOAD FAILED: $1"
+    echo "    QtMaker: DOWNLOADING OF $1 WAS FAILED"
     echo ""
-    exit 1
+    
+    return 1
 }
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-getq "qtbase"
-getq "qtmultimedia"
-getq "qtdeclarative"
-getq "qtquickcontrols2"
-getq "qtserialport"
+if ! getq "qtbase" ;           then exit 1 ; fi
+if ! getq "qtmultimedia" ;     then exit 2 ; fi
+if ! getq "qtdeclarative" ;    then exit 3 ; fi
+if ! getq "qtquickcontrols2" ; then exit 4 ; fi
+if ! getq "qtserialport" ;     then exit 5 ; fi
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+echo ""
+echo "    QtMaker: Qt $Qt_VER libs were sucessfully got"
+echo ""
 
 exit 0

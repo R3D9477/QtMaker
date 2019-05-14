@@ -5,18 +5,31 @@ source ./setEnv.sh
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 function deploy() {
+    
     if [ ! -d "$Qt_EXPORT" ]; then
-        echo " EXPORT $Qt_EXPORT DOESN'T EXIST"
+        
+        echo ""
+        echo "    QtMaker: DIRECTORY $Qt_EXPORT DOESN'T EXIST"
+        echo ""
+        
         return 1
     fi
     
     if [ ! -d "$SYSROOT$Qt_DIR" ] ; then
-        echo " DEST $SYSROOT$Qt_DIR DOESN'T EXIST"
+        
+        echo ""
+        echo "    QtMaker: DESTINATION $SYSROOT$Qt_DIR DOESN'T EXIST"
+        echo ""
+        
         return 2
     fi
     
     if ! eval "$SU cp -r \"$Qt_EXPORT\" \"$SYSROOT$Qt_DIR/\" " ; then
-        echo " FIALED TO COPY EXPORT"
+        
+        echo ""
+        echo "    QtMaker: UNABLE TO DEPLOY TEST APPS"
+        echo ""
+        
         return 3
     fi
     
@@ -25,13 +38,17 @@ function deploy() {
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-if deploy; then
-    echo "DEPLOYED: $(basename $Qt_EXPORT)"
-    exit 0
-else
+if ! deploy; then
+    
     echo "FAILED DEPLOYMENT: $(basename $Qt_EXPORT)"
+    
+    exit 1
 fi
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-exit 1
+echo ""
+echo "    QtMaker: Qt $Qt_VER test apps were exported to $Qt_EXPORT"
+echo ""
+
+exit 0

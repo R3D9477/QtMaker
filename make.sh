@@ -9,6 +9,7 @@ pushd "$CACHE"
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 function mk_inst() {
+    
     if cd $1*; then
         if [ -f "./autogen.sh" ]; then
             CFG="./autogen.sh"
@@ -49,48 +50,59 @@ function mk_inst() {
         fi
         cd ..
     fi
+    
     echo ""
-    echo "mk_inst FAILED: $1"
+    echo "    QtMaker: UNABLE TO COMPILE AND(OR) INSTALL $1"
     echo ""
-    exit 1
+    
+    return 1
 }
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-if [ ! -f "qtbase/mkspecs/devices/linux-imx6-g++/imx6-qmake.conf" ]; then
-    echo "FIX: imx6_qmake.conf"
-    
-    mv "qtbase/mkspecs/devices/linux-imx6-g++/qmake.conf" "qtbase/mkspecs/devices/linux-imx6-g++/imx6-qmake.conf"
-    echo "include(./imx6-qmake.conf)" > "qtbase/mkspecs/devices/linux-imx6-g++/qmake.conf"
-    echo "QMAKE_RPATHDIR += $SDK_PATH_TARGET/lib/arm-linux-gnueabihf" >> "qtbase/mkspecs/devices/linux-imx6-g++/qmake.conf"
-    echo "QMAKE_RPATHDIR += $SDK_PATH_TARGET/usr/lib/arm-linux-gnueabihf" >> "qtbase/mkspecs/devices/linux-imx6-g++/qmake.conf"
+if [ "$Qt_DEVICE" == "imx6" ] || [ "$Qt_DEVICE" == "linux-imx6-g++" ] ; then
+    if [ ! -f "qtbase/mkspecs/devices/linux-imx6-g++/imx6-qmake.conf" ]; then
+        echo "FIX: imx6_qmake.conf"
+        
+        mv "qtbase/mkspecs/devices/linux-imx6-g++/qmake.conf" "qtbase/mkspecs/devices/linux-imx6-g++/imx6-qmake.conf"
+        echo "include(./imx6-qmake.conf)" > "qtbase/mkspecs/devices/linux-imx6-g++/qmake.conf"
+        echo "QMAKE_RPATHDIR += $SDK_PATH_TARGET/lib/arm-linux-gnueabihf" >> "qtbase/mkspecs/devices/linux-imx6-g++/qmake.conf"
+        echo "QMAKE_RPATHDIR += $SDK_PATH_TARGET/usr/lib/arm-linux-gnueabihf" >> "qtbase/mkspecs/devices/linux-imx6-g++/qmake.conf"
+    fi
 fi
 
-mk_inst qtbase                                          \
-    -opensource -confirm-license                        \
-    -developer-build                                    \
-    -device imx6                                        \
-    -device-option CROSS_COMPILE="$TOOLCHAIN_PREFIX"    \
-    -sysroot "$SDK_PATH_TARGET"                         \
-    -prefix "$Qt_DIR"                                   \
-    -nomake tools                                       \
-    -nomake tests                                       \
-    -nomake examples                                    \
-    -no-use-gold-linker                                 \
-    -recheck                                            \
-    -verbose                                            \
-    -qt-zlib                                            \
-    -opengl es2
+#--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-mk_inst qtmultimedia
+if ! mk_inst qtbase                                         \
+        -opensource -confirm-license                        \
+        -developer-build                                    \
+        -device "$QT_DEVICE"                                \
+        -device-option CROSS_COMPILE="$TOOLCHAIN_PREFIX"    \
+        -sysroot "$SDK_PATH_TARGET"                         \
+        -prefix "$Qt_DIR"                                   \
+        -nomake tools                                       \
+        -nomake tests                                       \
+        -nomake examples                                    \
+        -no-use-gold-linker                                 \
+        -recheck                                            \
+        -verbose                                            \
+        -qt-zlib                                            \
+        -opengl es2 ;                                       \
+    then exit 1; fi
 
-mk_inst qtdeclarative
-mk_inst qtquickcontrols2
+if ! mk_inst qtmultimedia ; then exit 2; fi
 
-mk_inst qtserialport
+if ! mk_inst qtdeclarative ; then exit 3; fi
+if ! mk_inst qtquickcontrols2 ; then exit 4; fi
+
+if ! mk_inst qtserialport ; then exit 5; fi
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 popd
+
+echo ""
+echo "    QtMaker: Qt $Qt_VER libs were successfully built"
+echo ""
 
 exit 0
