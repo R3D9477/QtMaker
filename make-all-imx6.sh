@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -z "$CACHE" ] ; then
+if [ -z "$CACHE" ] ; then
     
     echo ""
     echo "    QtMaker: CACHE CAN'T BE EMPTY!"
@@ -9,7 +9,7 @@ if [ ! -z "$CACHE" ] ; then
     exit 1
 fi
 
-if [ ! -z "$SYSROOT" ] ; then
+if [ -z "$SYSROOT" ] ; then
     
     echo ""
     echo "    QtMaker: SYSROOT CAN'T BE EMPTY!"

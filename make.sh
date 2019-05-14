@@ -22,7 +22,6 @@ function mk_inst() {
             rm "config.log"
             rm "config.cache"
         fi
-        echo "${CFG} ${@:2}"
         if eval "${CFG} ${@:2}"; then
             unset Qt_AC
             if [ "$Qt_ACCEPT_CONFIG" == "y" ] || [ "$Qt_ACCEPT_CONFIG" == "n" ]; then
@@ -76,7 +75,7 @@ fi
 if ! mk_inst qtbase                                         \
         -opensource -confirm-license                        \
         -developer-build                                    \
-        -device "$QT_DEVICE"                                \
+        -device "$Qt_DEVICE"                                \
         -device-option CROSS_COMPILE="$TOOLCHAIN_PREFIX"    \
         -sysroot "$SDK_PATH_TARGET"                         \
         -prefix "$Qt_DIR"                                   \
@@ -87,8 +86,7 @@ if ! mk_inst qtbase                                         \
         -recheck                                            \
         -verbose                                            \
         -qt-zlib                                            \
-        -opengl es2 ;                                       \
-    then exit 1; fi
+        -opengl es2 ; then exit 1; fi
 
 if ! mk_inst qtmultimedia ; then exit 2; fi
 
