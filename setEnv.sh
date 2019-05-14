@@ -50,6 +50,26 @@ fi
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
+if [ -z "$Qt_DEVICE" ]; then
+    read -p "Qt DEVICE: " Qt_DEVICE
+    if [ -z "$Qt_DEVICE" ] ; then
+        Qt_DEVICE="generic"
+    fi
+    export Qt_DEVICE
+fi
+
+if [ -z "$ARCH" ]; then
+    read -p "Qt ARCH: " Qt_ARCH
+    if [ -z "$Qt_ARCH" ] ; then
+        Qt_ARCH=$(uname -i)
+    fi
+    export Qt_ARCH
+else
+    export Qt_ARCH=$ARCH
+fi
+
+#--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
 if [ -z "$Qt_ACCEPT_CONFIG" ]; then
     read -p "ACCEPT Qt CONFIG? (y/n/a): " Qt_ACCEPT_CONFIG
     if [ -z "$Qt_ACCEPT_CONFIG" ] ; then
@@ -78,4 +98,15 @@ fi
 
 if [ ! -d "$Qt_EXPORT" ] ; then
     mkdir -p "$Qt_EXPORT"
+fi
+
+#--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+if [ -z "$Qt_SDK" ]; then
+    read -p "Qt SDK: " Qt_SDK
+    if [ -z "$Qt_SDK" ] ; then
+        if [ -z "" ]
+        Qt_SDK="$CACHE/Qt${Qt_VER}_${Qt_DEVICE}-${Qt_ARCH}_SDK"
+    fi
+    export Qt_SDK
 fi
