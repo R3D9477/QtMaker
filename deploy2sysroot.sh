@@ -38,17 +38,12 @@ function deploy() {
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-if ! deploy; then
-    
-    echo "FAILED DEPLOYMENT: $(basename $Qt_EXPORT)"
-    
-    exit 1
-fi
+if ! deploy ; then exit 1 ; fi
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 echo ""
-echo "    QtMaker: Qt $Qt_VER test apps were exported to $Qt_EXPORT"
+echo "    QtMaker: Qt $Qt_VER test apps were deployed to $Qt_EXPORT"
 echo ""
 
 exit 0
