@@ -39,7 +39,7 @@ function getq() {
     cd "$CACHE"
     
     echo ""
-    echo "    QtMaker: DOWNLOADING OF $1 WAS FAILED"
+    echo "    QtMaker: UNABLE TO DOWNLOAD $1"
     echo ""
     
     return 1

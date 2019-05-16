@@ -16,10 +16,9 @@ Script provides:
 2. set your toolchain _(example you can see in [LIMaker](https://github.com/r3d9u11/LIMaker/blob/master/03-set_tc`#L1))_
 3. be sure that you have a free space on your local storage
 4. run `git clone --recursive https://github.com/r3d9u11/QtMaker.git`
-5. checkout needed branch _(according to needed version of Qt)_
-6. check configuration in `make-all-defs``
-7. run `make-all-imx6``
-8. wait until process will be completed
+5. check configuration in heading of `make-all.sh` and set needed values
+6. run `make-all`
+7. wait until process will be completed
 
 #### Variables
 
@@ -28,7 +27,7 @@ Script provides:
 * `PASS` - password to grant root privileges on host machine
 * `Qt_VER` - numeric version of Qt
 * `Qt_DIR` - Qt directory on target root filesystem
-* `Qt_DEVICE` - target device _(from `qtbase/mkspecs/devices`)_
+* `Qt_DEVICE` - target device (from `qtbase/mkspecs/devices`)
 * `Qt_ARCH` - target hardware architecture (usually uses value from `ARCH`)
 * `Qt_ACCEPT_CONFIG` - autoaccept Qt configuration
   * `a` - ask everytime (when you want to check Qt configuration)
@@ -40,10 +39,10 @@ Script provides:
 
 #### Scripts
 
-* `make-all-imx6` - cross-comples Qt and test-applications for imx.6 and installs it to destication root filesystem
+* `make-all` - cross-compiles Qt libs and test-applications and installs them to destination root filesystem
 * `make` - compiles and installs Qt libs
 * `get` - downloads Qt libs
 * `setEnv` - sets [Qt variables](#variables)
-* `export` - compiles Qt test-applications and create the export directory with binary files
-* `deploy2sysroot` - deploys the export directory with test-applciations  to the destination root filesystem
+* `export` - compiles Qt test-applications and exports them to `Qt_EXPORT`
+* `deploy2sysroot` - deploys the export directory with test-applciations to the destination root filesystem
 * `createSDK` - copies the result directory with Qt binaries to the host machine (for application development)

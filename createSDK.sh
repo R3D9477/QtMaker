@@ -4,8 +4,8 @@ source ./setEnv.sh
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-if [ ! -d "$QT_SDK" ]; then
-    if ! cp -r "$SYSROOT/$Qt_DIR" "$QT_SDK"; then
+if [ ! -d "$Qt_SDK" ]; then
+    if ! cp -r "$SYSROOT/$Qt_DIR" "$Qt_SDK"; then
         
         echo ""
         echo "    QtMaker: UNABLE TO CREATE Qt $Qt_VER SDK"
@@ -18,7 +18,7 @@ fi
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 echo ""
-echo "    QtMaker: Qt $Qt_VER SDK was placed to $QT_SDK"
+echo "    QtMaker: Qt $Qt_VER SDK was placed to $Qt_SDK"
 echo ""
 
 exit 0

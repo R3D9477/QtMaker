@@ -41,11 +41,7 @@ if [ -z "$Qt_VER" ]; then
 fi
 
 if [ -z "$Qt_DIR" ]; then
-    read -p "Qt DIR: " Qt_DIR
-    if [ -z "$Qt_DIR" ] ; then
-        Qt_DIR="/opt/Qt$Qt_VER"
-    fi
-    export Qt_DIR
+    export Qt_DIR="/opt/Qt$Qt_VER"
 fi
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -81,32 +77,17 @@ fi
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 if [ -z "$Qt_TEST" ]; then
-    read -p "Qt TEST: " Qt_TEST
-    if [ -z "$Qt_TEST" ] ; then
-        Qt_TEST=$(realpath "test")
-    fi
-    export Qt_TEST
+    export Qt_TEST=$(realpath "test")
 fi
 
 if [ -z "$Qt_EXPORT" ]; then
-    read -p "Qt EXPORT: " Qt_EXPORT
-    if [ -z "$Qt_EXPORT" ] ; then
-        Qt_EXPORT="$CACHE/qtest_$(date '+%Y%m%d%H%M%S')"
-    fi
-    export Qt_EXPORT
+    export Qt_EXPORT="$CACHE/qtest_$(date '+%Y%m%d%H%M%S')"
 fi
 
 if [ ! -d "$Qt_EXPORT" ] ; then
     mkdir -p "$Qt_EXPORT"
 fi
 
-#--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-
 if [ -z "$Qt_SDK" ]; then
-    read -p "Qt SDK: " Qt_SDK
-    if [ -z "$Qt_SDK" ] ; then
-        if [ -z "" ]
-        Qt_SDK="$CACHE/Qt${Qt_VER}_${Qt_DEVICE}-${Qt_ARCH}_SDK"
-    fi
-    export Qt_SDK
+    export Qt_SDK="$CACHE/Qt${Qt_VER}_${Qt_DEVICE}-${Qt_ARCH}_SDK"
 fi

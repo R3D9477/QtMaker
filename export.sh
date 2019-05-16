@@ -47,13 +47,13 @@ function export_app() {
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-if ! qbuild "$Qt_TEST/qt_c" ;  then exit 3; fi
-if ! qbuild "$Qt_TEST/qt_w" ;  then exit 4; fi
-if ! qbuild "$Qt_TEST/qt_qc" ; then exit 5; fi
+if ! qbuild "$Qt_TEST/qt_c"  ; then exit 1; fi
+if ! qbuild "$Qt_TEST/qt_w"  ; then exit 2; fi
+if ! qbuild "$Qt_TEST/qt_qc" ; then exit 3; fi
 
-if ! export_app "qt_c" ;  then exit 1; fi
-if ! export_app "qt_w" ;  then exit 2; fi
-if ! export_app "qt_qc" ; then exit 3; fi
+if ! export_app "qt_c"  ; then exit 4; fi
+if ! export_app "qt_w"  ; then exit 5; fi
+if ! export_app "qt_qc" ; then exit 6; fi
 
 #--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
