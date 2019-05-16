@@ -3,12 +3,12 @@ build your Qt from sources automatically
 
 Script provides:
 * downloading and packing (for future re-usage) needed sources
-* building from sources 
-  * QtBase
-  * QtMultimedia
-  * QtDeclarative
-  * QtQuick2
-  * QtSerialport
+* building from sources (by default uses Qt 5.9)
+  * [QtBase](https://code.qt.io/cgit/qt/qtbase.git)
+  * [QtMultimedia](https://code.qt.io/cgit/qt/qtmultimedia.git)
+  * [QtDeclarative](https://code.qt.io/cgit/qt/qtdeclarative.git)
+  * [QtQuick2](https://code.qt.io/cgit/qt/qtdeclarative.git)
+  * [QtSerialport](https://code.qt.io/cgit/qt/qtserialport.git)
 
 #### Install and Run
 
